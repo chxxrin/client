@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react';
 
 const Home = () => {
-  return <div>히히</div>
-}
+  const [isLogin, setIsLogin] = useState(false);
 
-export default Home
+  return <div>히히</div>;
+};
+
+export default Home;
