@@ -6,24 +6,29 @@ import { Flex } from 'src/@components/atoms/Flex';
 import SearchBox from './SearchBox';
 import RankingBox from './RankingBox';
 import RankingBoard from './RankingBoard';
+import { styled } from 'styled-components';
 
 const Social = () => {
   return (
-    <div>
-      <Space margin="50px" />
+    <SocialContainer>
+      <Space height="80px" />
       <SearchBox />
-      <Space margin="50px" />
+      <Space height="50px" />
       <Flex direction="row" justify="space-evenly">
-        <RankingBox rankingText="A" />
-        <RankingBox rankingText="B" />
+        <RankingBox rankingText="스터디 랭킹" />
+        <RankingBox rankingText="개인 랭킹" />
       </Flex>
-      <Space margin="50px" />
+      <Space height="30px" />
       <Flex direction="row" justify="space-evenly">
         <RankingBoard />
         <RankingBoard />
       </Flex>
-    </div>
+    </SocialContainer>
   );
 };
+
+const SocialContainer = styled.div`
+  background-color: #fafafa;
+`;
 
 export default Social;
