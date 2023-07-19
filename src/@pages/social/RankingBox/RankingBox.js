@@ -2,21 +2,22 @@ import { styled } from 'styled-components';
 
 // Imported Compononents
 import { Text } from 'src/@components/atoms/Text';
+import { colors } from '../utils/palette';
 
 const RankingCard = () => {
   return <RankingCardContainer></RankingCardContainer>;
 };
 
-const RankingBox = ({ rankingText }) => {
+const RankingBox = ({ isTeam }) => {
   return (
     <RankingBoxContainer>
       <RankingTextContainer>
         <Text size="15" weight="Bold">
-          {rankingText}
+          {isTeam ? '스터디 랭킹' : '개인 랭킹'}
         </Text>
       </RankingTextContainer>
 
-      <RankingCard />
+      <RankingCard isTeam={isTeam} />
     </RankingBoxContainer>
   );
 };
@@ -33,7 +34,7 @@ const RankingCardContainer = styled.div`
   height: 190px;
   border-radius: 10px;
 
-  background-color: #fff;
+  background-color: ${colors.themeBG};
   box-shadow: 0px 2px 10px 1px #00000033;
 `;
 
