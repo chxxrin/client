@@ -6,20 +6,23 @@ const studies = ['스터디 1', '스터디 2', '스터디 3', '스터디 4'];
 const Setting = () => {
   return (
     <SettingWrapper>
-      <SettingTitle>알림</SettingTitle>
-      <NotificationBox />
-      <ContentWrapper>
-        <StudyWrapper>
-          <SettingTitle>스터디 관리</SettingTitle>
-          {studies.map((study, index) => (
-            <StudyBox key={index} study={study} />
-          ))}
-        </StudyWrapper>
-        <ProfileWrapper>
-          <SettingTitle>프로필 관리</SettingTitle>
-          <ProfileBox />
-        </ProfileWrapper>
-      </ContentWrapper>
+      <Sidebar />
+      <SettingContent>
+        <SettingTitle>알림</SettingTitle>
+        <NotificationBox />
+        <ContentWrapper>
+          <StudyWrapper>
+            <SettingTitle>스터디 관리</SettingTitle>
+            {studies.map((study, index) => (
+              <StudyBox key={index} study={study} />
+            ))}
+          </StudyWrapper>
+          <ProfileWrapper>
+            <SettingTitle>프로필 관리</SettingTitle>
+            <ProfileBox />
+          </ProfileWrapper>
+        </ContentWrapper>
+      </SettingContent>
     </SettingWrapper>
   );
 };
@@ -34,6 +37,12 @@ const ProfileBox = () => {
   return <Box>프로필 관리 UI</Box>;
 };
 
+const Sidebar = styled.div`
+  width: 201px;
+  height: 723px;
+  background: blue;
+`;
+
 const NotificationBox = styled.div`
   width: 1007px;
   height: 126px;
@@ -44,9 +53,15 @@ const NotificationBox = styled.div`
 
 const SettingWrapper = styled.div`
   display: flex;
+  flex-direction: row;
+  padding: 16px;
+`;
+
+const SettingContent = styled.div`
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 16px;
+  margin-left: 20px;
 `;
 
 //스터디 관리 + 프로필 관리 감싸는 태그
