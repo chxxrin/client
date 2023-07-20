@@ -16,7 +16,7 @@ const SearchBox = () => {
         icon={faMagnifyingGlass}
       />
       <SocialInput placeholder="스터디명 또는 사용자명을 입력해 주세요." />
-      <MyButton width="70" height="40" color={colors.themeRed}>
+      <MyButton width="70px" height="40px" color={colors.themeRed}>
         <Text size="20" weight="bold" color="#fff">
           검색
         </Text>

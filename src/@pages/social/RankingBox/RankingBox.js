@@ -3,10 +3,7 @@ import { styled } from 'styled-components';
 // Imported Compononents
 import { Text } from 'src/@components/atoms/Text';
 import { colors } from '../utils/palette';
-
-const RankingCard = () => {
-  return <RankingCardContainer></RankingCardContainer>;
-};
+import RankingCard from './RankingCard';
 
 const RankingBox = ({ isTeam }) => {
   return (

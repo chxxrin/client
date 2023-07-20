@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import { Text } from 'src/@components/atoms/Text';
+import { colors } from './utils/palette';
 
 const ListItem = ({ rank, name, team, solved, last }) => {
   return (
@@ -21,7 +22,7 @@ const ListItemContainer = styled.li`
   height: 40px;
 
   list-style: none;
-  background-color: #fff;
+  background-color: ${colors.themeBG};
 `;
 
 export default ListItem;

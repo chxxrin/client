@@ -4,7 +4,7 @@ import React from 'react';
 import { Space } from 'src/@components/atoms/Space';
 import { Flex } from 'src/@components/atoms/Flex';
 import SearchBox from './SearchBox';
-import RankingBox from './RankingBox';
+import RankingBox from './RankingBox/RankingBox';
 import RankingBoard from './RankingBoard';
 import { styled } from 'styled-components';
 
@@ -15,8 +15,8 @@ const Social = () => {
       <SearchBox />
       <Space height="50px" />
       <Flex direction="row" justify="space-evenly">
-        <RankingBox rankingText="스터디 랭킹" />
-        <RankingBox rankingText="개인 랭킹" />
+        <RankingBox isTeam={true} />
+        <RankingBox isTeam={false} />
       </Flex>
       <Space height="30px" />
       <Flex direction="row" justify="space-evenly">

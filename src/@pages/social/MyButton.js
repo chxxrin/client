@@ -17,8 +17,8 @@ const MyButton = ({
 const StyledButton = styled.button`
   border: none;
   border-radius: 5px;
-  width: ${({ width }) => width}px;
-  height: ${({ height }) => height}px;
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
   background-color: ${({ color }) => color};
   cursor: pointer;
   letter-spacing: 1px;
