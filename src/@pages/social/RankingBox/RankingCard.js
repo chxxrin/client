@@ -5,7 +5,7 @@ import { colors } from '../utils/palette';
 import { Flex } from 'src/@components/atoms/Flex';
 import { Text } from 'src/@components/atoms/Text';
 import { RankingBoxStudyData } from '../utils/DummyData';
-import MyButton from '../MyButton';
+import MyButton from '../Common/MyButton';
 import MyDGText from '../MyDGText';
 import RankingCardTextBlock from './RankingCardTextBlock';
 

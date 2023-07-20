@@ -4,7 +4,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { colors } from './utils/palette';
 
 // Imported Components
-import MyButton from './MyButton';
+import MyButton from './Common/MyButton';
 import { Text } from 'src/@components/atoms/Text';
 
 const SearchBox = () => {

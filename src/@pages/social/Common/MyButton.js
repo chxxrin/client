@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { colors } from './utils/palette';
+import { colors } from '../utils/palette';
 
 const MyButton = ({
   width = '0',

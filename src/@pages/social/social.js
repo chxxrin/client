@@ -5,7 +5,7 @@ import { Space } from 'src/@components/atoms/Space';
 import { Flex } from 'src/@components/atoms/Flex';
 import SearchBox from './SearchBox';
 import RankingBox from './RankingBox/RankingBox';
-import RankingBoard from './RankingBoard';
+import RankingBoard from './RankingBoard/RankingBoard';
 import { styled } from 'styled-components';
 
 const Social = () => {

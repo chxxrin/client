@@ -6,7 +6,7 @@ import ListItem from './ListItem';
 import { Text } from 'src/@components/atoms/Text';
 
 // Imported Data
-import { listHeaderText } from './utils/Texts';
+import { listHeaderText } from '../utils/Texts';
 
 const RankingBoard = ({ type }) => {
   return (
