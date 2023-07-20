@@ -7,6 +7,7 @@ const Card = () => {
 
   const handleButtonClick = () => {
     setSolved(!solved);
+    window.location.href = 'https://www.acmicpc.net/problem/1000';
   };
 
   const handleDeleteClick = () => {
@@ -22,9 +23,9 @@ const Card = () => {
       <SubContainer>
         <Image />
         <Problem>
-          <ProblemNumber>4201번</ProblemNumber>
-          <ProblemTitle>Hot Spot</ProblemTitle>
-          <ProblemTag>미정</ProblemTag>
+          <ProblemNumber>1000번</ProblemNumber>
+          <ProblemTitle>A+B</ProblemTitle>
+          <ProblemTag>수학</ProblemTag>
         </Problem>
         <People>
           <PeopleTitle>푼 사람</PeopleTitle>
@@ -53,7 +54,7 @@ const MainContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 30px;
-  margin: 30px;
+  margin-top: 30px;
   flex-direction: column; /* Add this to stack items vertically */
 `;
 
