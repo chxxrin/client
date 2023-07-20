@@ -7,11 +7,19 @@ import Card from './Card';
 const Exam = () => {
   return (
     <>
-      <Weekend />
-      <ProblemAddButton />
-      <Card />
+      <MainContainer>
+        <Weekend />
+        <ProblemAddButton />
+        <Card />
+      </MainContainer>
     </>
   );
 };
 
 export default Exam;
+
+const MainContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+`;

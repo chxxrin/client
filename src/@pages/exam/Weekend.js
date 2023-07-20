@@ -1,11 +1,30 @@
+import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const Weekend = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const handlePreviousWeekClick = () => {
+    // Navigate to the previous week page
+    // You can define the path for the previous week page here
+    navigate('/previous-week');
+  };
+
+  const handleNextWeekClick = () => {
+    // Navigate to the next week page
+    // You can define the path for the next week page here
+    navigate('/next-week');
+  };
   return (
     <>
       <WeekendBar>
-        <WeekendBarButton>이전 주</WeekendBarButton>
-        <WeekendBarButton>다음 주</WeekendBarButton>
+        <WeekendBarButton onClick={handlePreviousWeekClick}>
+          이전 주
+        </WeekendBarButton>
+        <WeekendBarButton onClick={handleNextWeekClick}>
+          다음 주
+        </WeekendBarButton>
       </WeekendBar>
       <WeekendBox>
         <WeekendDate>2023.05.01-2023.05.07</WeekendDate>
@@ -26,6 +45,7 @@ const WeekendBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 20px;
 `;
 
 const WeekendBarButton = styled.div`
