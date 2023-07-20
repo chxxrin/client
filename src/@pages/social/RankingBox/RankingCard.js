@@ -6,7 +6,7 @@ import { Flex } from 'src/@components/atoms/Flex';
 import { Text } from 'src/@components/atoms/Text';
 import { RankingBoxStudyData } from '../utils/DummyData';
 import MyButton from '../Common/MyButton';
-import MyDGText from '../MyDGText';
+import MyDGText from '../Common/MyDGText';
 import RankingCardTextBlock from './RankingCardTextBlock';
 
 const data = RankingBoxStudyData[0];
@@ -17,7 +17,12 @@ const RankingCard = () => {
       <Flex width="170px" height="140px" justify="space-between">
         <Flex justify="space-evenly" align="left">
           <MyDGText>{`${data.rank}위 | ${data.lv}`}</MyDGText>
-          <Text size="18" color="#000" weight="bold">
+          <Text
+            size="18"
+            color="#000"
+            weight="bold"
+            font={`'Noto Sans KR', sans-serif;`}
+          >
             {data.name}
           </Text>
         </Flex>

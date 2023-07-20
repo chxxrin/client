@@ -17,7 +17,12 @@ const SearchBox = () => {
       />
       <SocialInput placeholder="스터디명 또는 사용자명을 입력해 주세요." />
       <MyButton width="70px" height="40px" color={colors.themeRed}>
-        <Text size="20" weight="bold" color="#fff">
+        <Text
+          size="20"
+          weight="bold"
+          color="#fff"
+          font={`'Noto Sans KR', sans-serif;`}
+        >
           검색
         </Text>
       </MyButton>
@@ -50,6 +55,7 @@ const SocialInput = styled.input`
   text-indent: 10px;
   font-size: 20px;
   line-height: 20px;
+  font-family: 'Noto Sans KR', sans-serif;
 
   outline: none;
 

@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { Text } from 'src/@components/atoms/Text';
-import { colors } from './utils/palette';
+import { colors } from '../utils/palette';
 
 const ListItem = ({ rank, name, team, solved, last }) => {
   return (

@@ -9,7 +9,7 @@ const RankingBox = ({ isTeam }) => {
   return (
     <RankingBoxContainer>
       <RankingTextContainer>
-        <Text size="15" weight="Bold">
+        <Text size="15" weight="Bold" font={`'Noto Sans KR', sans-serif;`}>
           {isTeam ? '스터디 랭킹' : '개인 랭킹'}
         </Text>
       </RankingTextContainer>
