@@ -3,52 +3,61 @@ import { styled } from 'styled-components';
 
 // Imported Compononents
 import ListItem from './ListItem';
-import { Text } from 'src/@components/atoms/Text';
+import { Flex } from 'src/@components/atoms/Flex';
 
 // Imported Data
-import { listHeaderText } from '../utils/Texts';
+import { listHeaderText, listDivSize } from '../utils/Texts';
+import { RankingBoardStudyData } from '../utils/DummyData';
+import MyDGText from '../Common/MyDGText';
 
-const RankingBoard = ({ type }) => {
+const RankingBoard = ({ isTeam }) => {
   return (
     <RankingBoardContainer>
-      <ListHeader type={type} />
-      <ListItem rank="1" name="이예림" team="Naver" solved="97" last="follow" />
-      <ListItem rank="1" name="이예림" team="Naver" solved="97" last="follow" />
-      <ListItem rank="1" name="이예림" team="Naver" solved="97" last="follow" />
-      <ListItem rank="1" name="이예림" team="Naver" solved="97" last="follow" />
+      <ListHeader isTeam={isTeam} />
+      {RankingBoardStudyData.map((item) => (
+        <ListItem
+          key={item.id}
+          rank={item.rank}
+          name={item.studyName}
+          team={item.leader}
+          solved={item.solved}
+          last={item.MVP}
+        />
+      ))}
     </RankingBoardContainer>
   );
 };
 
-const ListHeader = ({ type }) => {
+const ListHeader = ({ isTeam }) => {
+  const typeText = isTeam ? 'Team' : 'Indiv';
   return (
     <ListHeaderContainer>
-      <Text size="15" color="#676769">
-        {listHeaderText.Team[1]}
-      </Text>
-      <Text size="15" color="#676769">
-        {listHeaderText.Team[2]}
-      </Text>
-      <Text size="15" color="#676769">
-        {listHeaderText.Team[3]}
-      </Text>
-      <Text size="15" color="#676769">
-        {listHeaderText.Team[4]}
-      </Text>
-      <Text size="15" color="#676769">
-        {listHeaderText.Team[5]}
-      </Text>
+      {listHeaderText[typeText].map((text, idx) => (
+        <ListDiv key={idx} width={listDivSize[idx]}>
+          <MyDGText>{text}</MyDGText>
+        </ListDiv>
+      ))}
     </ListHeaderContainer>
   );
 };
 
+const RankingBoardContainer = styled.div`
+  width: 495px;
+`;
+
 const ListHeaderContainer = styled.div`
-  padding: 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  padding: 10px 5px;
+  width: 100%;
+
   text-align: left;
 `;
 
-const RankingBoardContainer = styled.div`
-  width: 495px;
+export const ListDiv = styled.div`
+  width: ${({ width }) => width}px;
 `;
 
 export default RankingBoard;

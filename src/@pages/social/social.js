@@ -20,8 +20,8 @@ const Social = () => {
       </Flex>
       <Space height="30px" />
       <Flex direction="row" justify="space-evenly">
-        <RankingBoard />
-        <RankingBoard />
+        <RankingBoard isTeam={true} />
+        <RankingBoard isTeam={false} />
       </Flex>
     </SocialContainer>
   );
