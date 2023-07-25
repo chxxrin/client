@@ -44,3 +44,38 @@ export const RankingBoardStudyData = [
     MVP: '비공개',
   },
 ];
+
+export const RankingBoardIndivData = [
+  {
+    id: 1,
+    rank: '1',
+    name: '이예림',
+    team: 'NAVER',
+    solved: '97문제',
+    ifFollow: 'true',
+  },
+  {
+    id: 2,
+    rank: '2',
+    name: '하지민',
+    team: '서강대학교',
+    solved: '89문제',
+    ifFollow: 'false',
+  },
+  {
+    id: 3,
+    rank: '3',
+    name: '윤태호',
+    team: '서강대학교',
+    solved: '18문제',
+    ifFollow: 'me',
+  },
+  {
+    id: 4,
+    rank: '4',
+    name: '홍혁진',
+    team: 'KAIST',
+    solved: '12문제',
+    ifFollow: 'true',
+  },
+];

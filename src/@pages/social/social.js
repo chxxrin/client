@@ -8,6 +8,12 @@ import RankingBox from './RankingBox/RankingBox';
 import RankingBoard from './RankingBoard/RankingBoard';
 import { styled } from 'styled-components';
 
+// Imported Data
+import {
+  RankingBoardStudyData,
+  RankingBoardIndivData,
+} from './utils/DummyData';
+
 const Social = () => {
   return (
     <SocialContainer>
@@ -20,8 +26,8 @@ const Social = () => {
       </Flex>
       <Space height="30px" />
       <Flex direction="row" justify="space-evenly">
-        <RankingBoard isTeam={true} />
-        <RankingBoard isTeam={false} />
+        <RankingBoard isTeam={true} data={RankingBoardStudyData} />
+        <RankingBoard isTeam={false} data={RankingBoardIndivData} />
       </Flex>
     </SocialContainer>
   );

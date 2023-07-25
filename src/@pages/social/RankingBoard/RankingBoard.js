@@ -3,27 +3,36 @@ import { styled } from 'styled-components';
 
 // Imported Compononents
 import ListItem from './ListItem';
-import { Flex } from 'src/@components/atoms/Flex';
 
 // Imported Data
 import { listHeaderText, listDivSize } from '../utils/Texts';
-import { RankingBoardStudyData } from '../utils/DummyData';
 import MyDGText from '../Common/MyDGText';
 
-const RankingBoard = ({ isTeam }) => {
+const RankingBoard = ({ isTeam, data }) => {
   return (
     <RankingBoardContainer>
       <ListHeader isTeam={isTeam} />
-      {RankingBoardStudyData.map((item) => (
-        <ListItem
-          key={item.id}
-          rank={item.rank}
-          name={item.studyName}
-          team={item.leader}
-          solved={item.solved}
-          last={item.MVP}
-        />
-      ))}
+      {isTeam
+        ? data.map((item) => (
+            <ListItem
+              key={item.id}
+              rank={item.rank}
+              name={item.studyName}
+              team={item.leader}
+              solved={item.solved}
+              last={item.MVP}
+            />
+          ))
+        : data.map((item) => (
+            <ListItem
+              key={item.id}
+              rank={item.rank}
+              name={item.name}
+              team={item.team}
+              solved={item.solved}
+              last={item.isFollow}
+            />
+          ))}
     </RankingBoardContainer>
   );
 };
