@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faBuilding } from '@fortawesome/free-solid-svg-icons';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import ellipse28 from './Ellipse 28.svg';
+import Github from './Github.svg';
+import building from './Building.svg';
+
 const studies = ['스터디 1', '스터디 2', '스터디 3', '스터디 4'];
 
 const Setting = () => {
@@ -59,8 +60,6 @@ const ProfileBox = () => {
           />
         </Row>
         <Row />
-        <Row />
-        <Row />
         <Row>
           <IconProfileContainer />
           <Button>내 정보 수정</Button>
@@ -73,18 +72,28 @@ const ProfileBox = () => {
 const IconProfileItem = ({ icon, text }) => {
   return (
     <IconProfileItemStyled>
-      <FontAwesomeIcon icon={icon} size="1x" />
+      {icon}
       <IconProfileText>{text}</IconProfileText>
     </IconProfileItemStyled>
   );
 };
 
+const profileItems = [
+  { icon: ellipse28, alt: 'Ellipse 28', text: '장세환' },
+  { icon: Github, alt: 'Github', text: '@sehwanchang' },
+  { icon: building, alt: 'building', text: '서강대학교 | 멋쟁이사자처럼' },
+];
+
 const IconProfileContainer = () => {
   return (
     <IconProfileContainerStyled>
-      <IconProfileItem icon={faUser} text="장세환" />
-      <IconProfileItem icon={faGithub} text="@sehwanchang" />
-      <IconProfileItem icon={faBuilding} text="서강대학교 | 멋쟁이사자처럼" />
+      {profileItems.map((item, index) => (
+        <IconProfileItem
+          key={index}
+          icon={<img src={item.icon} alt={item.alt} />}
+          text={item.text}
+        />
+      ))}
     </IconProfileContainerStyled>
   );
 };
@@ -147,8 +156,7 @@ const Row = styled.div`
   flex-direction: row; // 가로 방향으로 조정
   align-items: center;
   justify-content: flex-start;
-  margin-top: 10px;
-  margin-left: 5px;
+  padding: 10px 5px;
 `;
 const StudyWrapper = styled.div`
   display: flex;
@@ -189,16 +197,17 @@ const ProfileItemStyled = styled.div`
 `;
 
 const IconProfileContainerStyled = styled.div`
-width : 162px
-height : 75px
-display : flex
-flex-direction : column;
-justify-content : space-around;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 135px;
+  height: 75px;
 `;
 
 const IconProfileItemStyled = styled.div`
   display: flex;
   align-items: center;
+  padding: 5px 0;
 `;
 
 const IconProfileText = styled.div`
