@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { GrPrevious, GrNext } from 'react-icons/gr';
@@ -7,6 +7,7 @@ import { AiOutlinePlus } from 'react-icons/ai';
 const Weekend = () => {
   const navigate = useNavigate();
   const [currentWeek, setCurrentWeek] = useState(1);
+  const [algorithmTags, setAlgorithmTags] = useState([]);
 
   // Helper function to calculate the start and end dates for each week
   const getWeekDates = (weekNumber) => {
@@ -25,6 +26,26 @@ const Weekend = () => {
   const handleNextWeekClick = () => {
     setCurrentWeek((prevWeek) => prevWeek + 1);
     navigate('/exam');
+  };
+
+  useEffect(() => {
+    const savedTags = localStorage.getItem('algorithmTags');
+    if (savedTags) {
+      setAlgorithmTags(JSON.parse(savedTags));
+    }
+  }, []);
+
+  const handleAddAlgorithm = () => {
+    const userInput = window.prompt('알고리즘을 입력하세요:');
+    if (userInput) {
+      setAlgorithmTags((prevTags) => [...prevTags, userInput]);
+
+      // 알고리즘 목록을 로컬 스토리지에 저장
+      localStorage.setItem(
+        'algorithmTags',
+        JSON.stringify([...algorithmTags, userInput])
+      );
+    }
   };
 
   const { startDate, endDate } = getWeekDates(currentWeek);
@@ -54,8 +75,10 @@ const Weekend = () => {
       <AlgorithmBox>
         <AlgorithmTitle>사용 알고리즘</AlgorithmTitle>
         <AlgorithmTags>
-          <AlgorithmTag>미정</AlgorithmTag>
-          <AlgorithmAdd>
+          {algorithmTags.map((tag, index) => (
+            <AlgorithmTag key={index}>{tag}</AlgorithmTag>
+          ))}
+          <AlgorithmAdd onClick={handleAddAlgorithm}>
             <AiOutlinePlus />
           </AlgorithmAdd>
         </AlgorithmTags>
@@ -84,6 +107,7 @@ const WeekendBarButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 const WeekendDate = styled.div`

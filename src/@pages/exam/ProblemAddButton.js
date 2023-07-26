@@ -6,8 +6,11 @@ import { BsSearch } from 'react-icons/bs';
 const ProblemAddButton = () => {
   const [showModal, setShowModal] = useState(false);
   const [searchValue, setSearchValue] = useState('');
-  const [problemDetails, setProblemDetails] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
+  const [problemData, setProblemData] = useState({
+    problemDetails: null,
+    solved: false,
+  });
 
   const handleButtonClick = () => {
     setShowModal(true);
@@ -16,28 +19,22 @@ const ProblemAddButton = () => {
   const handleSubmit = () => {
     setShowModal(false);
     setSearchValue('');
-    setProblemDetails(null);
+    setProblemData({ problemDetails: null, solved: false });
   };
 
   const handleModalClose = () => {
     setShowModal(false);
     setSearchValue('');
-    setProblemDetails(null);
+    setProblemData({ problemDetails: null, solved: false });
   };
 
   const handleSearch = async () => {
     try {
       const response = await axios.get(
-        `https://solved.ac/api/v3/search/problem`,
-        {
-          params: {
-            query: searchValue,
-            size: 10, // Number of search results to fetch, you can adjust this value as needed
-          },
-        }
+        `https://solvedac.github.io/api/v3/problem/show?problemId=${searchValue}`
       );
       const data = response.data;
-      setSearchResults(data.content);
+      setSearchResults([data]);
     } catch (error) {
       console.error('Error fetching search results:', error);
       setSearchResults([]);
@@ -66,24 +63,31 @@ const ProblemAddButton = () => {
                 {searchResults.map((result) => (
                   <SearchResult
                     key={result.problemId}
-                    onClick={() => setProblemDetails(result)}
+                    onClick={() =>
+                      setProblemData({ problemDetails: result, solved: false })
+                    }
                   >
                     <ProblemNumber>{result.problemId}</ProblemNumber>
                     <ProblemTitle>{result.title}</ProblemTitle>
-                    <ProblemTag>{result.onlineJudge}</ProblemTag>
-                    {/* Add other problem details you want to display */}
+                    <ProblemTag>
+                      {result.tags?.displayNames?.name || 'No Algorithm'}
+                    </ProblemTag>
                   </SearchResult>
                 ))}
               </SearchResults>
             )}
 
-            {problemDetails && (
+            {problemData.problemDetails && (
               <ProblemDetails>
                 {/* Display the problem details fetched from the API */}
-                <ProblemNumber>{problemDetails.problemId}</ProblemNumber>
-                <ProblemTitle>{problemDetails.title}</ProblemTitle>
-                <ProblemTag>{problemDetails.onlineJudge}</ProblemTag>
-                {/* Add other problem details you want to display */}
+                <ProblemNumber>
+                  {problemData.problemDetails.problemId}
+                </ProblemNumber>
+                <ProblemTitle>{problemData.problemDetails.title}</ProblemTitle>
+                <ProblemTag>
+                  {problemData.problemDetails.tags?.displayNames?.name ||
+                    'No Algorithm'}
+                </ProblemTag>
               </ProblemDetails>
             )}
             <Buttons>
