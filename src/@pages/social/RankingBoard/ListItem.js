@@ -7,23 +7,29 @@ import { ListDiv } from './RankingBoard';
 import MyDGText from '../Common/MyDGText';
 
 import { listDivSize } from '../utils/Texts';
-const keys = ['rank', 'name', 'team', 'solved', 'last'];
+import MyProfile from '../Common/MyProfile';
 
 const ListItem = (props) => {
+  const keys = Object.keys(props);
   return (
     <ListItemContainer>
       {keys.map((k, i) => {
-        return (
-          <ListDiv key={i} width={listDivSize[i]}>
-            {i === 0 || i === 1 ? (
-              <Text size={18} weight="bold">
-                {props[keys[i]]}
-              </Text>
-            ) : (
-              <MyDGText>{props[keys[i]]}</MyDGText>
-            )}
-          </ListDiv>
-        );
+        if (i === 0) {
+          return (
+            <Text size={18} weight="bold">
+              {props[keys[i]]}
+            </Text>
+          );
+        } else if (i === 1) {
+          return (
+            <Text size={18} weight="bold">
+              <MyProfile width={23} />
+              {props[keys[i]]}
+            </Text>
+          );
+        } else {
+          return <MyDGText>{props[keys[i]]}</MyDGText>;
+        }
       })}
     </ListItemContainer>
   );

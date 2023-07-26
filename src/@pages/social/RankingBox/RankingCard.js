@@ -8,6 +8,7 @@ import { RankingBoxStudyData } from '../utils/DummyData';
 import MyButton from '../Common/MyButton';
 import MyDGText from '../Common/MyDGText';
 import RankingCardTextBlock from './RankingCardTextBlock';
+import MyProfile from '../Common/MyProfile';
 
 const data = RankingBoxStudyData[0];
 
@@ -28,6 +29,12 @@ const RankingCard = () => {
         </Flex>
         <Flex justify="space-evenly" align="left">
           <MyDGText>스터디원</MyDGText>
+          <Flex direction="row" width="fit-content">
+            <MyProfile width={30} />
+            <MyProfile width={30} />
+            <MyProfile width={30} />
+            <MyProfile width={30} />
+          </Flex>
         </Flex>
       </Flex>
       {/* ------------------------------------------------ */}
@@ -47,7 +54,7 @@ const RankingCard = () => {
           />
         </Flex>
         <MyButton width="inherit" height="35px" color={colors.themeGray}>
-          <MyDGText>스터디 정보 공개하지 않기</MyDGText>
+          <MyDGText margin="0px">스터디 정보 공개하지 않기</MyDGText>
         </MyButton>
       </Flex>
     </RankingCardContainer>

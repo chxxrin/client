@@ -59,7 +59,7 @@ const ListHeaderContainer = styled.div`
   flex-direction: row;
   justify-content: space-around;
 
-  padding: 10px 5px;
+  padding: 5px 5px;
   width: 100%;
 
   text-align: left;

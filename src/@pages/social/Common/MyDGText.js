@@ -1,11 +1,14 @@
 import { styled } from 'styled-components';
 import { colors } from '../utils/palette';
 
-const MyDGText = ({ children }) => {
-  return <MyDGTextContainer>{children}</MyDGTextContainer>;
+const MyDGText = ({ margin = '5px', children }) => {
+  return <MyDGTextContainer margin={margin}>{children}</MyDGTextContainer>;
 };
 
 const MyDGTextContainer = styled.span`
+  display: inline-block;
+  margin-bottom: ${({ margin }) => margin};
+
   word-wrap: break-word;
   word-break: keep-all;
   font-size: 15px;
