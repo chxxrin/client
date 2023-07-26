@@ -4,10 +4,22 @@ import styled, { css } from 'styled-components';
 const Card = () => {
   const [solved, setSolved] = useState(false);
   const [visible, setVisible] = useState(true);
+  const [buttonText, setButtonText] = useState('도전하기'); // Add state for button text
+  const hasGitHubLink = true; // Replace with your logic to determine whether the GitHub link is registered
 
   const handleButtonClick = () => {
     setSolved(!solved);
-    window.location.href = 'https://www.acmicpc.net/problem/1000';
+
+    if (solved && hasGitHubLink) {
+      // If the problem is solved and has a GitHub link, show '커밋 내역 수정하기'
+      setButtonText('커밋 내역 수정하기');
+    } else if (solved) {
+      // If the problem is solved but does not have a GitHub link, show '풀었습니다!'
+      setButtonText('풀었습니다!');
+    } else {
+      // If the problem is not solved, redirect to the Baekjoon problem page
+      window.location.href = 'https://www.acmicpc.net/problem/1000'; // Replace with the appropriate URL
+    }
   };
 
   const handleDeleteClick = () => {
@@ -34,7 +46,7 @@ const Card = () => {
       </SubContainer>
       <Buttons>
         <CommitAddButton onClick={handleButtonClick} solved={solved}>
-          {solved ? '풀었습니다!' : '도전하기'}
+          {buttonText}
         </CommitAddButton>
         <DeleteButton onClick={handleDeleteClick}>삭제</DeleteButton>
       </Buttons>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { GrPrevious, GrNext } from 'react-icons/gr';
-import { AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlinePlus, AiOutlineClose } from 'react-icons/ai';
 
 const Weekend = () => {
   const navigate = useNavigate();
@@ -48,6 +48,15 @@ const Weekend = () => {
     }
   };
 
+  const handleDeleteTag = (index) => {
+    setAlgorithmTags((prevTags) => {
+      const newTags = [...prevTags];
+      newTags.splice(index, 1);
+      localStorage.setItem('algorithmTags', JSON.stringify(newTags));
+      return newTags;
+    });
+  };
+
   const { startDate, endDate } = getWeekDates(currentWeek);
 
   return (
@@ -76,7 +85,12 @@ const Weekend = () => {
         <AlgorithmTitle>사용 알고리즘</AlgorithmTitle>
         <AlgorithmTags>
           {algorithmTags.map((tag, index) => (
-            <AlgorithmTag key={index}>{tag}</AlgorithmTag>
+            <AlgorithmTag key={index}>
+              {tag}
+              <DeleteButton onClick={() => handleDeleteTag(index)}>
+                <AiOutlineClose />
+              </DeleteButton>
+            </AlgorithmTag>
           ))}
           <AlgorithmAdd onClick={handleAddAlgorithm}>
             <AiOutlinePlus />
@@ -169,6 +183,32 @@ const AlgorithmTag = styled.span`
   width: 46px;
   padding: 2px;
   flex-shrink: 0;
+  position: relative;
+  margin-right: 4px;
+
+  &:hover {
+    background: #d4e3fc;
+  }
+`;
+
+const DeleteButton = styled.button`
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #f05454;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: none; /* Hide the delete button by default */
+
+  ${AlgorithmTag}:hover & {
+    display: flex; /* Show the delete button on hover */
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const ReactIcon = styled.span``;
