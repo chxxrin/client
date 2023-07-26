@@ -12,9 +12,11 @@ export const Text = ({
   cursor = 'auto',
   underline = false,
   lineHeight = '120%',
+  align = 'center',
   shadow = false,
   white = false,
   blue = false,
+  isCut = false,
   ...rest
 }) => {
   return (
@@ -26,12 +28,14 @@ export const Text = ({
       as={as}
       spacing={spacing}
       font={font}
+      align={align}
       cursor={cursor}
       underline={underline}
       lineHeight={lineHeight}
       shadow={shadow}
       white={white}
       blue={blue}
+      isCut={isCut}
       {...rest}
     >
       {children}
@@ -41,10 +45,16 @@ export const Text = ({
 
 const StyledText = styled.span`
   word-wrap: break-word;
-  word-break: keep-all;
+  text-align: ${({ align }) => align};
   font-size: ${({ size }) => size}px;
   font-weight: ${({ weight }) => weight};
   color: ${({ color }) => color};
+  overflow: ${({ isCut }) => (isCut ? 'hidden' : '')};
+  text-overflow: ${({ isCut }) => (isCut ? 'ellipsis' : '')};
+  display: ${({ isCut }) => (isCut ? '-webkit-box' : '')};
+  -webkit-line-clamp: ${({ isCut }) => (isCut ? 1 : '')};
+  -webkit-box-orient: ${({ isCut }) => (isCut ? 'vertical' : '')};
+
   letter-spacing: ${({ spacing }) => spacing};
   line-height: ${({ lineHeight }) => lineHeight};
   font-family: ${({ font }) => font};
