@@ -7,7 +7,6 @@ const ProblemAddButton = () => {
   const [showModal, setShowModal] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const [problemDetails, setProblemDetails] = useState(null);
-  const [solved, setSolved] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
 
   const handleButtonClick = () => {
@@ -29,17 +28,19 @@ const ProblemAddButton = () => {
   const handleSearch = async () => {
     try {
       const response = await axios.get(
-        `https://solvedac.github.io/unofficial-documentation/${searchValue}`
+        `https://solved.ac/api/v3/search/problem`,
+        {
+          params: {
+            query: searchValue,
+            size: 10, // Number of search results to fetch, you can adjust this value as needed
+          },
+        }
       );
       const data = response.data;
-      setProblemDetails(data);
-
-      // 가져온 데이터로 검색 결과 상태를 업데이트합니다. 렌더링 부분과 일치하도록 배열로 감싸주세요.
-      setSearchResults([data]);
+      setSearchResults(data.content);
     } catch (error) {
-      console.error('문제 정보를 가져오는 중 오류 발생:', error);
-      // 오류를 처리하거나 사용자에게 오류 메시지를 표시하세요
-      setSearchResults([]); // 오류가 발생하면 검색 결과를 초기화합니다.
+      console.error('Error fetching search results:', error);
+      setSearchResults([]);
     }
   };
 
@@ -63,10 +64,13 @@ const ProblemAddButton = () => {
             {searchResults.length > 0 && (
               <SearchResults>
                 {searchResults.map((result) => (
-                  <SearchResult key={result.number}>
-                    <ProblemNumber>{result.number}</ProblemNumber>
+                  <SearchResult
+                    key={result.problemId}
+                    onClick={() => setProblemDetails(result)}
+                  >
+                    <ProblemNumber>{result.problemId}</ProblemNumber>
                     <ProblemTitle>{result.title}</ProblemTitle>
-                    <ProblemTag>{result.tag}</ProblemTag>
+                    <ProblemTag>{result.onlineJudge}</ProblemTag>
                     {/* Add other problem details you want to display */}
                   </SearchResult>
                 ))}
@@ -76,9 +80,9 @@ const ProblemAddButton = () => {
             {problemDetails && (
               <ProblemDetails>
                 {/* Display the problem details fetched from the API */}
-                <ProblemNumber>{problemDetails.number}</ProblemNumber>
+                <ProblemNumber>{problemDetails.problemId}</ProblemNumber>
                 <ProblemTitle>{problemDetails.title}</ProblemTitle>
-                <ProblemTag>{problemDetails.tag}</ProblemTag>
+                <ProblemTag>{problemDetails.onlineJudge}</ProblemTag>
                 {/* Add other problem details you want to display */}
               </ProblemDetails>
             )}
