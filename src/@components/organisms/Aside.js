@@ -8,7 +8,9 @@ const Aside = () => {
     <Flex algin="start">
       <Text>홈</Text>
       <Text>문제</Text>
-      <Link to="/social"><Text>소셜</Text></Link>
+      <Link to="/social">
+        <Text>소셜</Text>
+      </Link>
       <Text>설정</Text>
     </Flex>
   );
