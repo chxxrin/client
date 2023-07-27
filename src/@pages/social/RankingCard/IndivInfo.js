@@ -37,7 +37,6 @@ const Pair = styled.div`
 const Icon = styled(FontAwesomeIcon)`
   width: 17px;
   height: 17px;
-  box-sizing: border-box;
   border: 0.5px solid ${colors.themeGray};
   border-radius: 999px;
 

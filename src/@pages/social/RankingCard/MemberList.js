@@ -5,7 +5,6 @@ import MyDGText from '../Common/MyDGText';
 import MyProfile from '../Common/MyProfile';
 
 const MemberList = ({ data }) => {
-  console.log(data);
   return (
     <MemberListContainer>
       <MyDGText children="스터디원" />

@@ -6,6 +6,7 @@ const AppContainer = ({ children }) => {
 };
 
 const StyledApp = styled.div`
+  display: flex;
   max-width: 1920px;
 `;
 

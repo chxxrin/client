@@ -31,7 +31,6 @@ const SearchBox = () => {
 };
 
 const SearchBoxContainer = styled.div`
-  box-sizing: border-box;
   display: flex;
   justify-content: space-around;
   align-items: center;

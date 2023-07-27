@@ -1,5 +1,5 @@
 export const DummyRCSD = {
-  rank: 1,
+  rank: 5,
   name: '알고리즘 씹어먹기',
   grade: '🚁 성층권',
   mvp: '윤태호',
@@ -9,7 +9,7 @@ export const DummyRCSD = {
 };
 
 export const DummyRCID = {
-  rank: 1,
+  rank: 3,
   image: true,
   name: '윤태호',
   follow: 129,
@@ -18,49 +18,49 @@ export const DummyRCID = {
   is_open: true,
 };
 
-export const RankingBoardStudyData = [
+export const DummyRBSD = [
   {
     id: 1,
     rank: '🚀',
-    studyName: '멋쟁이사자...',
+    studyname: '멋쟁이사자...',
     leader: '윤태호',
     solved: '139문제',
-    MVP: '윤태호',
+    mvp: '윤태호',
   },
   {
     id: 2,
     rank: '🌕',
-    studyName: '네이버 코딩...',
+    studyname: '네이버 코딩...',
     leader: '이예림',
     solved: '102문제',
-    MVP: '이지아',
+    mvp: '이지아',
   },
   {
     id: 3,
     rank: '🛸',
-    studyName: 'KAIST전산...',
+    studyname: 'KAIST전산...',
     leader: '홍혁진',
     solved: '50문제',
-    MVP: '정영민',
+    mvp: '정영민',
   },
   {
     id: 4,
     rank: '🛸',
-    studyName: 'JavaScrip...',
+    studyname: 'JavaScrip...',
     leader: '하지민',
     solved: '비공개',
-    MVP: '비공개',
+    mvp: '비공개',
   },
 ];
 
-export const RankingBoardIndivData = [
+export const DummyRBID = [
   {
     id: 1,
     rank: '1',
     name: '이예림',
     team: 'NAVER',
     solved: '97문제',
-    ifFollow: 'true',
+    isFollow: true,
   },
   {
     id: 2,
@@ -68,7 +68,7 @@ export const RankingBoardIndivData = [
     name: '하지민',
     team: '서강대학교',
     solved: '89문제',
-    ifFollow: 'false',
+    isFollow: false,
   },
   {
     id: 3,
@@ -76,7 +76,7 @@ export const RankingBoardIndivData = [
     name: '윤태호',
     team: '서강대학교',
     solved: '18문제',
-    ifFollow: 'me',
+    isFollow: 'me',
   },
   {
     id: 4,
@@ -84,6 +84,6 @@ export const RankingBoardIndivData = [
     name: '홍혁진',
     team: 'KAIST',
     solved: '12문제',
-    ifFollow: 'true',
+    isFollow: true,
   },
 ];

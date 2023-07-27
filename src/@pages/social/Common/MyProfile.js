@@ -9,7 +9,6 @@ const MyProfile = ({ width = 30 }) => {
 
 const ProfileContainer = styled.div`
   display: inline-block;
-  box-sizing: border-box;
   border: 0.5px solid ${colors.themeGray};
   width: ${({ width }) => width}px;
   height: ${({ width }) => width}px;
