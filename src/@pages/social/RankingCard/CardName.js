@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 
 // Imported Components
-import { Text } from 'src/@components/atoms/Text';
-import { Space } from 'src/@components/atoms/Space';
-import { Flex } from 'src/@components/atoms/Flex';
+import { Text } from '@components/atoms/Text';
+import { Space } from '@components/atoms/Space';
+import Flex from '@components/atoms/Flex';
 import MyDGText from '../Common/MyDGText';
 import MyProfile from '../Common/MyProfile';
 

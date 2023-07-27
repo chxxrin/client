@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import { colors } from '../utils/palette';
 
 // Imported Components
-import { Flex } from 'src/@components/atoms/Flex';
+import Flex from '@components/atoms/Flex';
 
 const RankingCard = ({ children }) => {
   return (

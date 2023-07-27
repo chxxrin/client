@@ -3,9 +3,9 @@ import { styled } from 'styled-components';
 
 // Imported Components
 
-import { Text } from 'src/@components/atoms/Text';
-import { Space } from 'src/@components/atoms/Space';
-import { Flex } from 'src/@components/atoms/Flex';
+import { Text } from '@components/atoms/Text';
+import { Space } from '@components/atoms/Space';
+import Flex from '@components/atoms/Flex';
 import SearchBox from './SearchBox/SearchBox';
 import RankingCard from './RankingCard/RankingCard';
 import RankingBoard from './RankingBoard/RankingBoard';

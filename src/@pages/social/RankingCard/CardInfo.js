@@ -1,4 +1,4 @@
-import { Flex } from 'src/@components/atoms/Flex';
+import Flex from '@components/atoms/Flex';
 import CardTextBlock from './CardTextBlock';
 import { colors } from '../utils/palette';
 
