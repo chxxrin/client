@@ -1,14 +1,22 @@
-export const RankingBoxStudyData = [
-  {
-    name: '알고리즘 씹어먹기',
-    rank: '5',
-    lv: '🚁 성층권',
-    solved: '23',
-    mvp: '윤태호',
-    member: [],
-    published: true,
-  },
-];
+export const DummyRCSD = {
+  rank: 1,
+  name: '알고리즘 씹어먹기',
+  grade: '🚁 성층권',
+  mvp: '윤태호',
+  problem_count: 23,
+  member: [1, 1, 1, 1],
+  is_open: true,
+};
+
+export const DummyRCID = {
+  rank: 1,
+  image: true,
+  name: '윤태호',
+  follow: 129,
+  following: 32,
+  solved: 18,
+  is_open: true,
+};
 
 export const RankingBoardStudyData = [
   {
