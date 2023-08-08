@@ -1,11 +1,4 @@
 import React from 'react';
-
-// Imported Compononents
-import { Space } from 'src/@components/atoms/Space';
-import Flex from 'src/@components/atoms/Flex';
-import SearchBox from './SearchBox';
-import RankingBox from './RankingBox/RankingBox';
-import RankingBoard from './RankingBoard/RankingBoard';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
