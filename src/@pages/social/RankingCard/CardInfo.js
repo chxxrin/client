@@ -2,10 +2,10 @@ import Flex from '@components/atoms/Flex';
 import CardTextBlock from './CardTextBlock';
 import { colors } from '../utils/palette';
 
-const CardInfo = ({ data }) => {
+const CardInfo = ({ data, gap }) => {
   const { problem_count, mvp, follow, following, solved } = data;
   return (
-    <Flex direction="row" justify="space-between">
+    <Flex direction="row" width="auto" height="auto" gap={gap}>
       {problem_count ? (
         <CardTextBlock
           align="left"

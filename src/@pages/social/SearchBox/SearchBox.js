@@ -22,6 +22,7 @@ const SearchBox = () => {
           weight="bold"
           color="#fff"
           font={`'Noto Sans KR', sans-serif;`}
+          cursor="inherit"
         >
           검색
         </Text>

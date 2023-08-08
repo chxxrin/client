@@ -1,4 +1,4 @@
-export const DummyRCSD = {
+export const DummySRCD = {
   rank: 5,
   name: '알고리즘 씹어먹기',
   grade: '🚁 성층권',
@@ -8,7 +8,7 @@ export const DummyRCSD = {
   is_open: true,
 };
 
-export const DummyRCID = {
+export const DummyIRCD = {
   rank: 3,
   image: true,
   name: '윤태호',
@@ -18,11 +18,11 @@ export const DummyRCID = {
   is_open: true,
 };
 
-export const DummyRBSD = [
+export const DummySRBD = [
   {
     id: 1,
     rank: '🚀',
-    studyname: '멋쟁이사자...',
+    studyname: '멋쟁이사자처럼',
     leader: '윤태호',
     solved: '139문제',
     mvp: '윤태호',
@@ -30,7 +30,7 @@ export const DummyRBSD = [
   {
     id: 2,
     rank: '🌕',
-    studyname: '네이버 코딩...',
+    studyname: '네이버 코딩클럽',
     leader: '이예림',
     solved: '102문제',
     mvp: '이지아',
@@ -38,7 +38,7 @@ export const DummyRBSD = [
   {
     id: 3,
     rank: '🛸',
-    studyname: 'KAIST전산...',
+    studyname: 'KAIST전산학과 스터디',
     leader: '홍혁진',
     solved: '50문제',
     mvp: '정영민',
@@ -46,14 +46,14 @@ export const DummyRBSD = [
   {
     id: 4,
     rank: '🛸',
-    studyname: 'JavaScrip...',
+    studyname: 'JavaScript 스터디',
     leader: '하지민',
     solved: '비공개',
     mvp: '비공개',
   },
 ];
 
-export const DummyRBID = [
+export const DummyIRBD = [
   {
     id: 1,
     rank: '1',
