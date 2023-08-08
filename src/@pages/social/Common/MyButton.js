@@ -2,9 +2,9 @@ import { styled } from 'styled-components';
 import { colors } from '../utils/palette';
 
 const MyButton = ({
-  width = '0',
-  height = '0',
-  color = colors.themeBG,
+  width = '100%',
+  height = 'auto',
+  color = colors.themeGray,
   children,
 }) => {
   return (
@@ -17,6 +17,7 @@ const MyButton = ({
 const StyledButton = styled.button`
   border: none;
   border-radius: 5px;
+  padding: 8px 0;
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   background-color: ${({ color }) => color};
