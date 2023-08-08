@@ -21,3 +21,10 @@
   font-weight: 400;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'd2_coding';
+  src: url('./@fonts/d2coding.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
