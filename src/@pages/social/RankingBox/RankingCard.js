@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import { colors } from '../utils/palette';
 
 // Imported Components
-import { Flex } from 'src/@components/atoms/Flex';
+import Flex from 'src/@components/atoms/Flex';
 import { Text } from 'src/@components/atoms/Text';
 import { RankingBoxStudyData } from '../utils/DummyData';
 import MyButton from '../Common/MyButton';

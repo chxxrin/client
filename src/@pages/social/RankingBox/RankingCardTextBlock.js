@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Imported Components
-import { Flex } from 'src/@components/atoms/Flex';
+import Flex from 'src/@components/atoms/Flex';
 import { Text } from 'src/@components/atoms/Text';
 import MyDGText from '../Common/MyDGText';
 
