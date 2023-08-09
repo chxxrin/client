@@ -4,6 +4,7 @@ import React from 'react';
 import AsideStudySection from '../AsideStudySection';
 import { styled } from 'styled-components';
 import AsideFooter from '../AsideFooter';
+import { Service } from 'src/@service/kakaoService';
 
 const studyList = [
   {
@@ -21,22 +22,20 @@ const studyList = [
 ];
 
 const Aside = () => {
-  return (
-    <AsideContainer>
-      <Flex
-        direction="column"
-        align="flex-start"
-        justify="space-between"
-        height="100%"
-      >
-        <Flex align="start">
-          <AsideStudyToggle data={studyList} />
-          <AsideStudySection />
-        </Flex>
-        <AsideFooter />
+  <AsideContainer>
+    <Flex
+      direction="column"
+      align="flex-start"
+      justify="space-between"
+      height="100%"
+    >
+      <Flex align="start">
+        <AsideStudyToggle data={studyList} />
+        <AsideStudySection />
       </Flex>
-    </AsideContainer>
-  );
+      <AsideFooter />
+    </Flex>
+  </AsideContainer>;
 };
 
 const AsideContainer = styled.div`

@@ -5,9 +5,13 @@ import logo from '@imgs/solve_logo.svg';
 import { Space } from '@components/atoms/Space';
 import kakao from '@imgs/kakaoStart.svg';
 import { Text } from '@components/atoms/Text';
+import { Link } from 'react-router-dom';
+import { envConfig } from 'src/config';
 
 const Home = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  const { KAKAO_REDIRECT_URI, KAKAO_API_KEY } = envConfig;
+
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URI}&response_type=code`;
 
   return (
     <HomeContainer>
@@ -19,7 +23,9 @@ const Home = () => {
           solve_it()
         </Text>
         <Space height={'353px'} />
-        <img src={kakao} alt="kakaoLoginBtn" style={{ cursor: 'pointer' }} />
+        <Link to={kakaoURL}>
+          <img src={kakao} alt="kakaoLoginBtn" style={{ cursor: 'pointer' }} />
+        </Link>
       </Flex>
     </HomeContainer>
   );
