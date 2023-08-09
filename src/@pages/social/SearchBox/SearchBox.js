@@ -1,10 +1,10 @@
 import { styled } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { colors } from './utils/palette';
+import { colors } from '../utils/palette';
 
 // Imported Components
-import MyButton from './Common/MyButton';
+import MyButton from '../Common/MyButton';
 import { Text } from 'src/@components/atoms/Text';
 
 const SearchBox = () => {
@@ -16,12 +16,13 @@ const SearchBox = () => {
         icon={faMagnifyingGlass}
       />
       <SocialInput placeholder="스터디명 또는 사용자명을 입력해 주세요." />
-      <MyButton width="70px" height="40px" color={colors.themeRed}>
+      <MyButton width="70px" color={colors.themeRed}>
         <Text
           size="20"
           weight="bold"
           color="#fff"
           font={`'Noto Sans KR', sans-serif;`}
+          cursor="inherit"
         >
           검색
         </Text>
@@ -31,7 +32,6 @@ const SearchBox = () => {
 };
 
 const SearchBoxContainer = styled.div`
-  box-sizing: border-box;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -44,7 +44,7 @@ const SearchBoxContainer = styled.div`
   height: 70px;
   border-radius: 10px;
 
-  background-color: ${colors.themeBG};
+  background-color: ${colors.themeWhite};
 `;
 
 const SocialInput = styled.input`
