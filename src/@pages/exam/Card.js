@@ -33,7 +33,7 @@ const Card = () => {
   return (
     <MainContainer>
       <SubContainer>
-        <Image />
+        <ProblemImage src="./images/problem1.png" alt="Problem" />
         <Problem>
           <ProblemNumber>1000번</ProblemNumber>
           <ProblemTitle>A+B</ProblemTitle>
@@ -41,7 +41,7 @@ const Card = () => {
         </Problem>
         <People>
           <PeopleTitle>푼 사람</PeopleTitle>
-          <PeopleImage />
+          <PeopleImage src="./images/person1.png" alt="Person" />
         </People>
       </SubContainer>
       <Buttons>
@@ -70,13 +70,13 @@ const MainContainer = styled.div`
   flex-direction: column; /* Add this to stack items vertically */
 `;
 
-const Image = styled.div`
+const ProblemImage = styled.div`
   width: 47px;
   height: 47px;
   flex-shrink: 0;
   border-radius: 47px;
   border: 0.5px solid #babcbe;
-  background: lightgray 50% / cover no-repeat;
+  //   background: lightgray 50% / cover no-repeat;
 `;
 
 const SubContainer = styled.div`
@@ -140,7 +140,7 @@ const PeopleImage = styled.div`
   flex-shrink: 0;
   border-radius: 30px;
   border: 0.5px solid #babcbe;
-  background: lightgray 50% / cover no-repeat;
+  //   background: lightgray 50% / cover no-repeat;
 `;
 
 const Buttons = styled.div`

@@ -30,11 +30,34 @@ const ProblemAddButton = () => {
 
   const handleSearch = async () => {
     try {
+      const BASE_URL = 'http://127.0.0.1:8000'; // Replace with the actual base URL
+      const access =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAwMjA1NTMwLCJpYXQiOjE2OTE1NjU1MzAsImp0aSI6ImVmODFkOTM5NzY3NDRiYzhhMTkzNWIwZjVmMmE0NGZmIiwidXNlcl9pZCI6MX0.NE-PQyXevNbIfs4_GUPeZ3JnTkbEOOtgaRgYFEk37o0'; // Replace with the actual access token
+
       const response = await axios.get(
-        `https://solvedac.github.io/api/v3/problem/show?problemId=${searchValue}`
+        `${BASE_URL}/api/problem/뿌수기/${searchValue}/`,
+        {
+          headers: {
+            Authorization: `Bearer ${access}`,
+          },
+        }
       );
+
       const data = response.data;
-      setSearchResults([data]);
+
+      if (data.number) {
+        const problemInfo = {
+          problemId: data.number,
+          title: data.name,
+          algorithm: data.algorithms || 'No Algorithm', // Change the key name here
+          solvedMembers: data.solved_members || [],
+        };
+
+        setSearchResults([problemInfo]);
+      } else {
+        console.error('Problem not found');
+        setSearchResults([]);
+      }
     } catch (error) {
       console.error('Error fetching search results:', error);
       setSearchResults([]);
@@ -70,7 +93,7 @@ const ProblemAddButton = () => {
                     <ProblemNumber>{result.problemId}</ProblemNumber>
                     <ProblemTitle>{result.title}</ProblemTitle>
                     <ProblemTag>
-                      {result.tags?.displayNames?.name || 'No Algorithm'}
+                      {result.algorithms || 'No Algorithm'}
                     </ProblemTag>
                   </SearchResult>
                 ))}
@@ -85,11 +108,11 @@ const ProblemAddButton = () => {
                 </ProblemNumber>
                 <ProblemTitle>{problemData.problemDetails.title}</ProblemTitle>
                 <ProblemTag>
-                  {problemData.problemDetails.tags?.displayNames?.name ||
-                    'No Algorithm'}
+                  {problemData.problemDetails.algorithm || 'No Algorithm'}
                 </ProblemTag>
               </ProblemDetails>
             )}
+
             <Buttons>
               <SubmitButton onClick={handleSubmit}>완료</SubmitButton>
               <CloseButton onClick={handleModalClose}>취소</CloseButton>
@@ -135,6 +158,7 @@ const Modal = styled.div`
   right: 0;
   bottom: 0;
   display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
@@ -152,7 +176,7 @@ const ModalTitle = styled.div`
 
 const ModalContent = styled.div`
   width: 319px;
-  height: 352px;
+  height: 500px;
   padding: 20px;
   border-radius: 8px;
   background-color: #fff;
@@ -162,7 +186,6 @@ const ModalContent = styled.div`
 const SearchInputContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
   border-radius: 10px;
   border: 1px solid #babcbe;
   background: #fff;
@@ -174,9 +197,8 @@ const SearchInputContainer = styled.div`
   font-weight: 500;
   margin-top: 50px;
   line-height: normal;
-  width: 268px;
   height: 30px;
-
+  width: 310px;
   svg {
     margin-right: 10px;
     color: #999;
@@ -283,6 +305,7 @@ const SearchResults = styled.div`
   border: 1px solid #babcbe;
   border-radius: 5px;
   padding: 10px;
+  width: 300px;
 `;
 
 const SearchResult = styled.div`
