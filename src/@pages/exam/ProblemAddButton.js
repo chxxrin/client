@@ -45,15 +45,37 @@ const ProblemAddButton = () => {
 
       const data = response.data;
 
+      //   if (data.number) {
+      //     const problemInfo = {
+      //       problemId: data.number,
+      //       title: data.name,
+      //       algorithm: data.algorithms || 'No Algorithm', // Change the key name here
+      //       solvedMembers: data.solved_members || [],
+      //     };
+
+      //     setSearchResults([problemInfo]);
+      //   } else {
+      //     console.error('Problem not found');
+      //     setSearchResults([]);
+      //   }
+      // } catch (error) {
+      //   console.error('Error fetching search results:', error);
+      //   setSearchResults([]);
+      // }
       if (data.number) {
         const problemInfo = {
           problemId: data.number,
           title: data.name,
-          algorithm: data.algorithms || 'No Algorithm', // Change the key name here
+          algorithm: data.algorithms || 'No Algorithm',
           solvedMembers: data.solved_members || [],
         };
 
-        setSearchResults([problemInfo]);
+        if (searchResults.length === 1) {
+          // If there's only one result, automatically select it
+          setProblemData({ problemDetails: problemInfo, solved: false });
+        } else {
+          setSearchResults([problemInfo]);
+        }
       } else {
         console.error('Problem not found');
         setSearchResults([]);
@@ -73,11 +95,18 @@ const ProblemAddButton = () => {
             <ModalTitle>문제 추가하기</ModalTitle>
             <SearchInputContainer>
               <BsSearch size={17} />
+              {/* <SearchInput
+                type="text"
+                placeholder="백준 문제 번호"
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+              /> */}
               <SearchInput
                 type="text"
                 placeholder="백준 문제 번호"
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
+                onBlur={handleSearch} // Call handleSearch when input loses focus
               />
               <SearchButton onClick={handleSearch}>추가</SearchButton>
             </SearchInputContainer>
@@ -93,16 +122,15 @@ const ProblemAddButton = () => {
                     <ProblemNumber>{result.problemId}</ProblemNumber>
                     <ProblemTitle>{result.title}</ProblemTitle>
                     <ProblemTag>
-                      {result.algorithms || 'No Algorithm'}
+                      {result.algorithm || 'No Algorithm'}
                     </ProblemTag>
                   </SearchResult>
                 ))}
               </SearchResults>
             )}
 
-            {problemData.problemDetails && (
+            {/* {problemData.problemDetails && (
               <ProblemDetails>
-                {/* Display the problem details fetched from the API */}
                 <ProblemNumber>
                   {problemData.problemDetails.problemId}
                 </ProblemNumber>
@@ -111,7 +139,7 @@ const ProblemAddButton = () => {
                   {problemData.problemDetails.algorithm || 'No Algorithm'}
                 </ProblemTag>
               </ProblemDetails>
-            )}
+            )} */}
 
             <Buttons>
               <SubmitButton onClick={handleSubmit}>완료</SubmitButton>
