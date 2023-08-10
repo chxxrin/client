@@ -71,7 +71,6 @@ const ProblemAddButton = () => {
         };
 
         if (searchResults.length === 1) {
-          // If there's only one result, automatically select it
           setProblemData({ problemDetails: problemInfo, solved: false });
         } else {
           setSearchResults([problemInfo]);
@@ -169,7 +168,7 @@ const AddButton = styled.button`
   height: 55px;
   flex-shrink: 0;
   display: block;
-  margin-top: 40px;
+  margin-top: 55px;
   box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 
@@ -203,7 +202,7 @@ const ModalTitle = styled.div`
 `;
 
 const ModalContent = styled.div`
-  width: 319px;
+  width: 350px;
   height: 500px;
   padding: 20px;
   border-radius: 8px;
@@ -225,8 +224,8 @@ const SearchInputContainer = styled.div`
   font-weight: 500;
   margin-top: 50px;
   line-height: normal;
-  height: 30px;
-  width: 310px;
+  height: 40px;
+  width: 300px;
   svg {
     margin-right: 10px;
     color: #999;
@@ -331,7 +330,7 @@ const SubmitButton = styled.button`
 const SearchResults = styled.div`
   margin-top: 10px;
   border: 1px solid #babcbe;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 10px;
   width: 300px;
 `;
