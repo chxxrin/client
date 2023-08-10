@@ -22,20 +22,22 @@ const studyList = [
 ];
 
 const Aside = () => {
-  <AsideContainer>
-    <Flex
-      direction="column"
-      align="flex-start"
-      justify="space-between"
-      height="100%"
-    >
-      <Flex align="start">
-        <AsideStudyToggle data={studyList} />
-        <AsideStudySection />
+  return (
+    <AsideContainer>
+      <Flex
+        direction="column"
+        align="flex-start"
+        justify="space-between"
+        height="100%"
+      >
+        <Flex align="start">
+          <AsideStudyToggle data={studyList} />
+          <AsideStudySection />
+        </Flex>
+        <AsideFooter />
       </Flex>
-      <AsideFooter />
-    </Flex>
-  </AsideContainer>;
+    </AsideContainer>
+  );
 };
 
 const AsideContainer = styled.div`

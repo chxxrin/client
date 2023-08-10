@@ -16,7 +16,7 @@ const AsideToggleModal = ({ data, path }) => {
           <Flex direction="row" justify="start">
             <Link
               key={el.id}
-              to={`/${el.id}`}
+              to={`/${el.id}/home`}
               style={{ textDecoration: 'none', width: '122px' }}
             >
               <Text
