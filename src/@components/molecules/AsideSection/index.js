@@ -11,7 +11,7 @@ const AsideSection = ({ id, name, path }) => {
     <AsideSectionContainer isCurrentPath={isCurrentPath}>
       <Flex direction="row" width="auto" justify="start">
         <Space margin={'0px 0px 0px 10px'} />
-        <Link to={`/${id}`} style={{ textDecoration: 'none' }}>
+        <Link to={`/1/${id}`} style={{ textDecoration: 'none' }}>
           <Text size={20} color={isCurrentPath ? '#FFF' : '#BABCBE'}>
             {name}
           </Text>
