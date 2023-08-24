@@ -2,22 +2,51 @@ import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
 const Card = ({ problemDetails }) => {
-  const [solved, setSolved] = useState(false);
-  const [visible, setVisible] = useState(true);
-  const [buttonText, setButtonText] = useState('도전하기'); // Add state for button text
-  const hasGitHubLink = true; // Replace with your logic to determine whether the GitHub link is registered
-  console.log('Card Component - problemDetails:', problemDetails);
-  const handleButtonClick = () => {
-    setSolved(!solved);
+  // const [solved, setSolved] = useState(false);
+  // const [visible, setVisible] = useState(true);
+  // const [buttonText, setButtonText] = useState('도전하기');
+  // const hasGitHubLink = true;
+  // console.log('Card Component - problemDetails:', problemDetails);
+  // const handleButtonClick = () => {
+  //   setSolved(!solved);
 
-    if (solved && hasGitHubLink) {
-      // If the problem is solved and has a GitHub link, show '커밋 내역 수정하기'
-      setButtonText('커밋 내역 수정하기');
-    } else if (solved) {
-      // If the problem is solved but does not have a GitHub link, show '풀었습니다!'
-      setButtonText('풀었습니다!');
+  //   if (solved && hasGitHubLink) {
+  //     setButtonText('커밋 내역 수정하기');
+  //   } else if (solved) {
+  //     setButtonText('풀었습니다!');
+  //   } else {
+  //     window.location.href = `https://www.acmicpc.net/problem/${problemDetails.problemDetails.problemId}`;
+  //   }
+  // };
+
+  // const handleDeleteClick = () => {
+  //   setVisible(false);
+  // };
+
+  // if (!visible) {
+  //   return null;
+  // }
+
+  const [visible, setVisible] = useState(true);
+  const hasGitHub = problemDetails.has_github;
+  const commitUrl = problemDetails.commit_url;
+  const isSolved = problemDetails.is_solved;
+
+  let buttonText = '도전하기';
+
+  const handleButtonClick = () => {
+    if (isSolved) {
+      if (!hasGitHub) {
+        buttonText = '풀었습니다';
+      } else {
+        if (commitUrl === null) {
+          buttonText = '커밋내역 추가하기';
+        } else {
+          buttonText = '커밋내역 수정하기';
+        }
+      }
     } else {
-      // If the problem is not solved, redirect to the Baekjoon problem page
+      buttonText = '도전하기';
       window.location.href = `https://www.acmicpc.net/problem/${problemDetails.problemDetails.problemId}`;
     }
   };
@@ -53,7 +82,7 @@ const Card = ({ problemDetails }) => {
         </People>
       </SubContainer>
       <Buttons>
-        <CommitAddButton onClick={handleButtonClick} solved={solved}>
+        <CommitAddButton onClick={handleButtonClick} solved={isSolved}>
           {buttonText}
         </CommitAddButton>
         <DeleteButton onClick={handleDeleteClick}>삭제</DeleteButton>
