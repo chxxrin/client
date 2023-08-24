@@ -8,7 +8,7 @@ const AddProblem = () => {
   const [showModal, setShowModal] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const [cards, setCards] = useState([]); // Add state for cards [
+  const [cards, setCards] = useState([]);
   const [problemData, setProblemData] = useState({
     problemDetails: null,
     solved: false,
@@ -19,7 +19,6 @@ const AddProblem = () => {
   };
 
   useEffect(() => {
-    // Load cards from localStorage on component mount
     const storedCards = localStorage.getItem('cards');
     if (storedCards) {
       setCards(JSON.parse(storedCards));
@@ -27,16 +26,12 @@ const AddProblem = () => {
   }, []);
 
   useEffect(() => {
-    // Save cards to localStorage whenever it changes
     localStorage.setItem('cards', JSON.stringify(cards));
   }, [cards]);
   const handleCardCreation = () => {
     if (problemData.problemDetails) {
-      // Call the locally defined addNewCard function
       addNewCard(problemData);
-      // Reset the problemData state
       setProblemData({ problemDetails: null, solved: false });
-      // Close the modal
       setShowModal(false);
     }
   };
@@ -167,7 +162,7 @@ const AddButton = styled.button`
   height: 55px;
   flex-shrink: 0;
   display: block;
-  margin-top: 55px;
+  margin-top: 65px;
   box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 

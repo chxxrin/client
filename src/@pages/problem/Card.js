@@ -2,31 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
 const Card = ({ problemDetails }) => {
-  // const [solved, setSolved] = useState(false);
-  // const [visible, setVisible] = useState(true);
-  // const [buttonText, setButtonText] = useState('도전하기');
-  // const hasGitHubLink = true;
-  // console.log('Card Component - problemDetails:', problemDetails);
-  // const handleButtonClick = () => {
-  //   setSolved(!solved);
-
-  //   if (solved && hasGitHubLink) {
-  //     setButtonText('커밋 내역 수정하기');
-  //   } else if (solved) {
-  //     setButtonText('풀었습니다!');
-  //   } else {
-  //     window.location.href = `https://www.acmicpc.net/problem/${problemDetails.problemDetails.problemId}`;
-  //   }
-  // };
-
-  // const handleDeleteClick = () => {
-  //   setVisible(false);
-  // };
-
-  // if (!visible) {
-  //   return null;
-  // }
-
   const [visible, setVisible] = useState(true);
   const hasGitHub = problemDetails.has_github;
   const commitUrl = problemDetails.commit_url;
@@ -56,7 +31,7 @@ const Card = ({ problemDetails }) => {
   };
 
   if (!visible) {
-    return null; // Return null to hide the component
+    return null;
   }
 
   return (
@@ -126,6 +101,7 @@ const Problem = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 21px;
+  width: 70%;
 `;
 
 const ProblemDetails = styled.div`
@@ -165,7 +141,7 @@ const ProblemTag = styled.div`
 const People = styled.div`
   display: flex;
   flex-direction: column;
-  padding-left: 146px;
+  // padding-left: 146px;
 `;
 
 const PeopleTitle = styled.div`
