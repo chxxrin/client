@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 
-const Card = () => {
+const Card = ({ problemDetails }) => {
   const [solved, setSolved] = useState(false);
   const [visible, setVisible] = useState(true);
   const [buttonText, setButtonText] = useState('도전하기'); // Add state for button text
   const hasGitHubLink = true; // Replace with your logic to determine whether the GitHub link is registered
-
+  console.log('Card Component - problemDetails:', problemDetails);
   const handleButtonClick = () => {
     setSolved(!solved);
 
@@ -35,9 +35,17 @@ const Card = () => {
       <SubContainer>
         <ProblemImage src="./images/problem1.png" alt="Problem" />
         <Problem>
-          <ProblemNumber>1000번</ProblemNumber>
-          <ProblemTitle>A+B</ProblemTitle>
-          <ProblemTag>수학</ProblemTag>
+          {problemDetails && (
+            <ProblemDetails>
+              <ProblemNumber>
+                {problemDetails.problemDetails.problemId}
+              </ProblemNumber>
+              <ProblemTitle>{problemDetails.problemDetails.title}</ProblemTitle>
+              <ProblemTag>
+                {problemDetails.problemDetails.algorithm || 'No Algorithm'}
+              </ProblemTag>
+            </ProblemDetails>
+          )}
         </Problem>
         <People>
           <PeopleTitle>푼 사람</PeopleTitle>
@@ -66,7 +74,7 @@ const MainContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 30px;
-  margin-top: 30px;
+  margin-top: 25px;
   flex-direction: column; /* Add this to stack items vertically */
 `;
 
@@ -88,6 +96,12 @@ const Problem = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 21px;
+`;
+
+const ProblemDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
 `;
 
 const ProblemNumber = styled.div`
@@ -121,7 +135,6 @@ const ProblemTag = styled.div`
 const People = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
   padding-left: 146px;
 `;
 
@@ -147,12 +160,11 @@ const Buttons = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 0 20px;
   margin-top: auto; /* Add this to move the Buttons to the bottom */
 `;
 
 const CommitAddButton = styled.button`
-  width: 353px;
+  width: 330px;
   height: 33px;
   flex-shrink: 0;
   border-radius: 5px;

@@ -10,7 +10,7 @@ const Problem = () => {
       <MainContainer>
         <Weekend />
         <AddProblem />
-        <Card />
+        {/* <Card /> */}
       </MainContainer>
     </>
   );

@@ -2,15 +2,30 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { BsSearch } from 'react-icons/bs';
+import Card from './Card';
 
 const AddProblem = () => {
   const [showModal, setShowModal] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [cards, setCards] = useState([]); // Add state for cards [
   const [problemData, setProblemData] = useState({
     problemDetails: null,
     solved: false,
   });
+
+  const addNewCard = (problemInfo) => {
+    setCards([...cards, problemInfo]);
+  };
+
+  const handleCardCreation = () => {
+    if (problemData.problemDetails) {
+      // Call the locally defined addNewCard function
+      addNewCard(problemData);
+      // Reset the problemData state
+      setProblemData({ problemDetails: null, solved: false });
+    }
+  };
 
   const handleButtonClick = () => {
     setShowModal(true);
@@ -30,9 +45,9 @@ const AddProblem = () => {
 
   const handleSearch = async () => {
     try {
-      const BASE_URL = 'http://127.0.0.1:8000'; // Replace with the actual base URL
+      const BASE_URL = 'http://127.0.0.1:8000';
       const access =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAwMjA1NTMwLCJpYXQiOjE2OTE1NjU1MzAsImp0aSI6ImVmODFkOTM5NzY3NDRiYzhhMTkzNWIwZjVmMmE0NGZmIiwidXNlcl9pZCI6MX0.NE-PQyXevNbIfs4_GUPeZ3JnTkbEOOtgaRgYFEk37o0'; // Replace with the actual access token
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAwMjA1NTMwLCJpYXQiOjE2OTE1NjU1MzAsImp0aSI6ImVmODFkOTM5NzY3NDRiYzhhMTkzNWIwZjVmMmE0NGZmIiwidXNlcl9pZCI6MX0.NE-PQyXevNbIfs4_GUPeZ3JnTkbEOOtgaRgYFEk37o0';
 
       const response = await axios.get(
         `${BASE_URL}/api/problem/뿌수기/${searchValue}/`,
@@ -45,23 +60,6 @@ const AddProblem = () => {
 
       const data = response.data;
 
-      //   if (data.number) {
-      //     const problemInfo = {
-      //       problemId: data.number,
-      //       title: data.name,
-      //       algorithm: data.algorithms || 'No Algorithm', // Change the key name here
-      //       solvedMembers: data.solved_members || [],
-      //     };
-
-      //     setSearchResults([problemInfo]);
-      //   } else {
-      //     console.error('Problem not found');
-      //     setSearchResults([]);
-      //   }
-      // } catch (error) {
-      //   console.error('Error fetching search results:', error);
-      //   setSearchResults([]);
-      // }
       if (data.number) {
         const problemInfo = {
           problemId: data.number,
@@ -94,18 +92,12 @@ const AddProblem = () => {
             <ModalTitle>문제 추가하기</ModalTitle>
             <SearchInputContainer>
               <BsSearch size={17} />
-              {/* <SearchInput
-                type="text"
-                placeholder="백준 문제 번호"
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-              /> */}
               <SearchInput
                 type="text"
                 placeholder="백준 문제 번호"
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
-                onBlur={handleSearch} // Call handleSearch when input loses focus
+                onBlur={handleSearch}
               />
               <SearchButton onClick={handleSearch}>추가</SearchButton>
             </SearchInputContainer>
@@ -127,26 +119,17 @@ const AddProblem = () => {
                 ))}
               </SearchResults>
             )}
-
-            {/* {problemData.problemDetails && (
-              <ProblemDetails>
-                <ProblemNumber>
-                  {problemData.problemDetails.problemId}
-                </ProblemNumber>
-                <ProblemTitle>{problemData.problemDetails.title}</ProblemTitle>
-                <ProblemTag>
-                  {problemData.problemDetails.algorithm || 'No Algorithm'}
-                </ProblemTag>
-              </ProblemDetails>
-            )} */}
-
             <Buttons>
-              <SubmitButton onClick={handleSubmit}>완료</SubmitButton>
+              <SubmitButton onClick={handleCardCreation}>완료</SubmitButton>
               <CloseButton onClick={handleModalClose}>취소</CloseButton>
             </Buttons>
           </ModalContent>
         </Modal>
       )}
+
+      {cards.map((cardData, index) => (
+        <Card key={index} problemDetails={cardData} />
+      ))}
     </div>
   );
 };
