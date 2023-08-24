@@ -8,6 +8,8 @@ const Weekend = () => {
   const navigate = useNavigate();
   const [currentWeek, setCurrentWeek] = useState(1);
   const [algorithmTags, setAlgorithmTags] = useState([]);
+  const [addingTag, setAddingTag] = useState(false);
+  const [newTag, setNewTag] = useState('');
 
   // Helper function to calculate the start and end dates for each week
   const getWeekDates = (weekNumber) => {
@@ -20,12 +22,12 @@ const Weekend = () => {
 
   const handlePreviousWeekClick = () => {
     setCurrentWeek((prevWeek) => Math.max(1, prevWeek - 1));
-    navigate('/problem');
+    navigate('/1/problem');
   };
 
   const handleNextWeekClick = () => {
     setCurrentWeek((prevWeek) => prevWeek + 1);
-    navigate('/problem');
+    navigate('/1/problem');
   };
 
   useEffect(() => {
@@ -35,19 +37,6 @@ const Weekend = () => {
     }
   }, []);
 
-  const handleAddAlgorithm = () => {
-    const userInput = window.prompt('알고리즘을 입력하세요:');
-    if (userInput) {
-      setAlgorithmTags((prevTags) => [...prevTags, userInput]);
-
-      // 알고리즘 목록을 로컬 스토리지에 저장
-      localStorage.setItem(
-        'algorithmTags',
-        JSON.stringify([...algorithmTags, userInput])
-      );
-    }
-  };
-
   const handleDeleteTag = (index) => {
     setAlgorithmTags((prevTags) => {
       const newTags = [...prevTags];
@@ -55,6 +44,28 @@ const Weekend = () => {
       localStorage.setItem('algorithmTags', JSON.stringify(newTags));
       return newTags;
     });
+  };
+
+  const handleAddAlgorithm = () => {
+    setAddingTag(true);
+  };
+
+  const handleNewTagChange = (e) => {
+    setNewTag(e.target.value);
+  };
+
+  const handleNewTagKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      if (newTag.trim() !== '') {
+        setAlgorithmTags((prevTags) => [...prevTags, newTag]);
+        localStorage.setItem(
+          'algorithmTags',
+          JSON.stringify([...algorithmTags, newTag])
+        );
+      }
+      setAddingTag(false);
+      setNewTag('');
+    }
   };
 
   const { startDate, endDate } = getWeekDates(currentWeek);
@@ -92,9 +103,20 @@ const Weekend = () => {
               </DeleteButton>
             </AlgorithmTag>
           ))}
-          <AlgorithmAdd onClick={handleAddAlgorithm}>
-            <AiOutlinePlus />
-          </AlgorithmAdd>
+          {addingTag ? (
+            <AlgorithmTag>
+              <AlgorithmInput
+                type="text"
+                value={newTag}
+                onChange={handleNewTagChange}
+                onKeyPress={handleNewTagKeyPress}
+              />
+            </AlgorithmTag>
+          ) : (
+            <AlgorithmAdd onClick={handleAddAlgorithm}>
+              <AiOutlinePlus />
+            </AlgorithmAdd>
+          )}
         </AlgorithmTags>
       </AlgorithmBox>
     </>
@@ -180,7 +202,7 @@ const AlgorithmTag = styled.span`
   line-height: normal;
   border-radius: 5px;
   background: #e8f0fe;
-  width: 46px;
+  // width: 46px;
   padding: 2px;
   flex-shrink: 0;
   position: relative;
@@ -191,6 +213,20 @@ const AlgorithmTag = styled.span`
   }
 `;
 
+const AlgorithmInput = styled.input`
+  width: 100%;
+  height: 22px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  background: #e8f0fe;
+  border-radius: 5px;
+  padding: 2px;
+`;
 const DeleteButton = styled.button`
   position: absolute;
   top: -5px;

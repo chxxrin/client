@@ -33,7 +33,7 @@ const Card = ({ problemDetails }) => {
   return (
     <MainContainer>
       <SubContainer>
-        <ProblemImage src="./images/problem1.png" alt="Problem" />
+        <ProblemImage />
         <Problem>
           {problemDetails && (
             <ProblemDetails>
@@ -75,16 +75,17 @@ const MainContainer = styled.div`
   justify-content: space-between;
   padding: 30px;
   margin-top: 25px;
-  flex-direction: column; /* Add this to stack items vertically */
+  flex-direction: column;
 `;
 
 const ProblemImage = styled.div`
   width: 47px;
   height: 47px;
+  margin-top: 10px;
   flex-shrink: 0;
   border-radius: 47px;
   border: 0.5px solid #babcbe;
-  //   background: lightgray 50% / cover no-repeat;
+  background: url(/images/problem1.png) 50% / cover no-repeat;
 `;
 
 const SubContainer = styled.div`
@@ -153,14 +154,13 @@ const PeopleImage = styled.div`
   flex-shrink: 0;
   border-radius: 30px;
   border: 0.5px solid #babcbe;
-  //   background: lightgray 50% / cover no-repeat;
 `;
 
 const Buttons = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: auto; /* Add this to move the Buttons to the bottom */
+  margin-top: 15px;
 `;
 
 const CommitAddButton = styled.button`

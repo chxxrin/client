@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Weekend from './Weekend';
 import AddProblem from './AddProblem';
-import Card from './Card';
 
 const Problem = () => {
   return (
@@ -10,7 +9,6 @@ const Problem = () => {
       <MainContainer>
         <Weekend />
         <AddProblem />
-        {/* <Card /> */}
       </MainContainer>
     </>
   );

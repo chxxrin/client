@@ -141,9 +141,11 @@ const AddProblem = () => {
         </Modal>
       )}
 
-      {cards.map((cardData, index) => (
-        <Card key={index} problemDetails={cardData} />
-      ))}
+      <CardContainer>
+        {cards.map((cardData, index) => (
+          <Card key={index} problemDetails={cardData} />
+        ))}
+      </CardContainer>
     </div>
   );
 };
@@ -339,4 +341,10 @@ const SearchResult = styled.div`
   &:hover {
     background-color: #f3f3f3;
   }
+`;
+
+const CardContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `;
