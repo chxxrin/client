@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { BsSearch } from 'react-icons/bs';
@@ -18,12 +18,26 @@ const AddProblem = () => {
     setCards([...cards, problemInfo]);
   };
 
+  useEffect(() => {
+    // Load cards from localStorage on component mount
+    const storedCards = localStorage.getItem('cards');
+    if (storedCards) {
+      setCards(JSON.parse(storedCards));
+    }
+  }, []);
+
+  useEffect(() => {
+    // Save cards to localStorage whenever it changes
+    localStorage.setItem('cards', JSON.stringify(cards));
+  }, [cards]);
   const handleCardCreation = () => {
     if (problemData.problemDetails) {
       // Call the locally defined addNewCard function
       addNewCard(problemData);
       // Reset the problemData state
       setProblemData({ problemDetails: null, solved: false });
+      // Close the modal
+      setShowModal(false);
     }
   };
 

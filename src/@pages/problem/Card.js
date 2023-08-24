@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
 const Card = ({ problemDetails }) => {
@@ -18,7 +18,7 @@ const Card = ({ problemDetails }) => {
       setButtonText('풀었습니다!');
     } else {
       // If the problem is not solved, redirect to the Baekjoon problem page
-      window.location.href = 'https://www.acmicpc.net/problem/1000'; // Replace with the appropriate URL
+      window.location.href = `https://www.acmicpc.net/problem/${problemDetails.problemDetails.problemId}`;
     }
   };
 
