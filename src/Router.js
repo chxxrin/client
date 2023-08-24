@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route, Redirect, useLocation } from 'react-router-dom';
 import Home from './@pages/home/home';
 import SignUp from './@pages/signUp/signUp';
-import Exam from './@pages/exam/exam';
+import Problem from './@pages/problem/problem';
 import Social from './@pages/social/social';
 import Setting from './@pages/setting/setting';
 import Aside from './@components/organisms/AsideBar';
@@ -31,7 +31,7 @@ const SpaceRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/kakao" element={<Kakao />} />
       <Route path="/signUp" element={<SignUp />} />
-      <Route path="/exam" element={<Exam />} />
+      <Route path="/problem" element={<Problem />} />
       <Route path="/social" element={<Social />} />
       <Route path="/setting" element={<Setting />} />
     </Routes>

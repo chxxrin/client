@@ -1,22 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import Weekend from './Weekend';
-import ProblemAddButton from './ProblemAddButton';
+import AddProblem from './AddProblem';
 import Card from './Card';
 
-const Exam = () => {
+const Problem = () => {
   return (
     <>
       <MainContainer>
         <Weekend />
-        <ProblemAddButton />
+        <AddProblem />
         <Card />
       </MainContainer>
     </>
   );
 };
 
-export default Exam;
+export default Problem;
 
 const MainContainer = styled.div`
   width: 100%;
