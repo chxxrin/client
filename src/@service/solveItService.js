@@ -23,8 +23,8 @@ instance.interceptors.response.use(
 );
 
 const Service = {
-  getToken: (code) => instance.post(`/api/user/login/`, { code }),
-  // 다른 API 호출 메서드들 추가
+  patchUser: (data) => instance.patch(`/api/user/detail-info/`, { data }),
+  getAccessToken: (data) => instance.post(`/api/user/login/refresh/`, { data }),
 };
 
 export default Service;

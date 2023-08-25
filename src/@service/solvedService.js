@@ -2,7 +2,7 @@ import axios from 'axios';
 import { envConfig } from 'src/config';
 
 const instance = axios.create({
-  baseURL: envConfig.BASE_URL,
+  baseURL: envConfig.SOLVEDAC_URL,
   timeout: 10000,
 });
 
@@ -23,7 +23,7 @@ instance.interceptors.response.use(
 );
 
 const Service = {
-  getToken: (code) => instance.post(`/api/user/login/`, { code }),
+  getUser: (id) => instance.get(`/users`, { params: { handle: id } }),
   // 다른 API 호출 메서드들 추가
 };
 
