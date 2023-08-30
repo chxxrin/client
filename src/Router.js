@@ -1,24 +1,71 @@
-import React from 'react';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import {
+  Routes,
+  Route,
+  Redirect,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
 import Home from './@pages/home/home';
 import SignUp from './@pages/signUp/signUp';
 import Exam from './@pages/exam/exam';
 import Social from './@pages/social/social';
 import Setting from './@pages/setting/setting';
-import Aside from './@components/organisms/Aside';
+import Aside from './@components/organisms/AsideBar';
+import Kakao from '@pages/Kakao';
+import { getCookie } from '@utils/util';
+import solveItService from './@service/solveItService';
+import axios from 'axios';
 
 const Router = () => {
+  const { pathname } = useLocation();
+  const excludeAside = ['/', '/kakao', '/signUp', '/home'];
+
+  const navigate = useNavigate();
+  const getAccessToken = async (refreshToken) => {
+    const data = await solveItService.getAccessToken(refreshToken);
+    return data;
+  };
+
+  useEffect(() => {
+    const refreshToken = getCookie('token');
+    const data = {
+      refresh: refreshToken,
+    };
+
+    if (!refreshToken) navigate('/');
+
+    // try {
+    //   const { access } = getAccessToken(data);
+    //   axios.defaults.headers.common['Authorization'] = access;
+    // } catch (err) {
+    //   console.err(err);
+    //   navigate('/');
+    // }
+  }, []);
+
   return (
-    <BrowserRouter>
-      <Aside />
+    <>
+      {excludeAside.includes(pathname) ? '' : <Aside />}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/kakao" element={<Kakao />} />
         <Route path="/signUp" element={<SignUp />} />
-        <Route path="/exam" element={<Exam />} />
-        <Route path="/social" element={<Social />} />
-        <Route path="/setting" element={<Setting />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/:spaceId/*" element={<SpaceRoutes />} />
       </Routes>
-    </BrowserRouter>
+    </>
+  );
+};
+
+const SpaceRoutes = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/signUp" element={<SignUp />} />
+      <Route path="/exam" element={<Exam />} />
+      <Route path="/social" element={<Social />} />
+      <Route path="/setting" element={<Setting />} />
+    </Routes>
   );
 };
 

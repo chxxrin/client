@@ -1,7 +1,7 @@
-import { ReactNode } from 'react'
-import styled from 'styled-components'
+import { ReactNode } from 'react';
+import styled from 'styled-components';
 
-export const Flex = ({
+const Flex = ({
   children,
   height = 'auto',
   direction = 'column',
@@ -23,8 +23,8 @@ export const Flex = ({
     >
       {children}
     </FlexBase>
-  )
-}
+  );
+};
 
 const FlexBase = styled.div`
   display: flex;
@@ -35,4 +35,6 @@ const FlexBase = styled.div`
   align-items: ${({ align }) => align};
   gap: ${({ gap }) => `${gap}px`};
   flex-wrap: ${({ wrap }) => wrap};
-`
+`;
+
+export default Flex;

@@ -1,3 +1,4 @@
+import Aside from '@components/organisms/AsideBar';
 import React from 'react';
 import styled from 'styled-components';
 import ellipse28 from './Ellipse 28.svg';
