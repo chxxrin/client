@@ -1,13 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
-const Card = () => {
-  const [solved, setSolved] = useState(false);
+const Card = ({ problemDetails }) => {
   const [visible, setVisible] = useState(true);
+  const hasGitHub = problemDetails.has_github;
+  const commitUrl = problemDetails.commit_url;
+  const isSolved = problemDetails.is_solved;
+
+  let buttonText = '도전하기';
 
   const handleButtonClick = () => {
-    setSolved(!solved);
-    window.location.href = 'https://www.acmicpc.net/problem/1000';
+    if (isSolved) {
+      if (!hasGitHub) {
+        buttonText = '풀었습니다';
+      } else {
+        if (commitUrl === null) {
+          buttonText = '커밋내역 추가하기';
+        } else {
+          buttonText = '커밋내역 수정하기';
+        }
+      }
+    } else {
+      buttonText = '도전하기';
+      window.location.href = `https://www.acmicpc.net/problem/${problemDetails.problemDetails.problemId}`;
+    }
   };
 
   const handleDeleteClick = () => {
@@ -15,26 +31,34 @@ const Card = () => {
   };
 
   if (!visible) {
-    return null; // Return null to hide the component
+    return null;
   }
 
   return (
     <MainContainer>
       <SubContainer>
-        <Image />
+        <ProblemImage />
         <Problem>
-          <ProblemNumber>1000번</ProblemNumber>
-          <ProblemTitle>A+B</ProblemTitle>
-          <ProblemTag>수학</ProblemTag>
+          {problemDetails && (
+            <ProblemDetails>
+              <ProblemNumber>
+                {problemDetails.problemDetails.problemId}
+              </ProblemNumber>
+              <ProblemTitle>{problemDetails.problemDetails.title}</ProblemTitle>
+              <ProblemTag>
+                {problemDetails.problemDetails.algorithm || 'No Algorithm'}
+              </ProblemTag>
+            </ProblemDetails>
+          )}
         </Problem>
         <People>
           <PeopleTitle>푼 사람</PeopleTitle>
-          <PeopleImage />
+          <PeopleImage src="./images/person1.png" alt="Person" />
         </People>
       </SubContainer>
       <Buttons>
-        <CommitAddButton onClick={handleButtonClick} solved={solved}>
-          {solved ? '풀었습니다!' : '도전하기'}
+        <CommitAddButton onClick={handleButtonClick} solved={isSolved}>
+          {buttonText}
         </CommitAddButton>
         <DeleteButton onClick={handleDeleteClick}>삭제</DeleteButton>
       </Buttons>
@@ -54,17 +78,18 @@ const MainContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 30px;
-  margin-top: 30px;
-  flex-direction: column; /* Add this to stack items vertically */
+  margin-top: 25px;
+  flex-direction: column;
 `;
 
-const Image = styled.div`
+const ProblemImage = styled.div`
   width: 47px;
   height: 47px;
+  margin-top: 10px;
   flex-shrink: 0;
   border-radius: 47px;
   border: 0.5px solid #babcbe;
-  background: lightgray 50% / cover no-repeat;
+  background: url(/images/problem1.png) 50% / cover no-repeat;
 `;
 
 const SubContainer = styled.div`
@@ -76,6 +101,13 @@ const Problem = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 21px;
+  width: 70%;
+`;
+
+const ProblemDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
 `;
 
 const ProblemNumber = styled.div`
@@ -109,8 +141,7 @@ const ProblemTag = styled.div`
 const People = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
-  padding-left: 146px;
+  // padding-left: 146px;
 `;
 
 const PeopleTitle = styled.div`
@@ -128,19 +159,17 @@ const PeopleImage = styled.div`
   flex-shrink: 0;
   border-radius: 30px;
   border: 0.5px solid #babcbe;
-  background: lightgray 50% / cover no-repeat;
 `;
 
 const Buttons = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 0 20px;
-  margin-top: auto; /* Add this to move the Buttons to the bottom */
+  margin-top: 15px;
 `;
 
 const CommitAddButton = styled.button`
-  width: 353px;
+  width: 330px;
   height: 33px;
   flex-shrink: 0;
   border-radius: 5px;

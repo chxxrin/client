@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { GrPrevious, GrNext } from 'react-icons/gr';
-import { AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlinePlus, AiOutlineClose } from 'react-icons/ai';
 
 const Weekend = () => {
   const navigate = useNavigate();
   const [currentWeek, setCurrentWeek] = useState(1);
+  const [algorithmTags, setAlgorithmTags] = useState([]);
+  const [addingTag, setAddingTag] = useState(false);
+  const [newTag, setNewTag] = useState('');
 
   // Helper function to calculate the start and end dates for each week
   const getWeekDates = (weekNumber) => {
@@ -19,12 +22,50 @@ const Weekend = () => {
 
   const handlePreviousWeekClick = () => {
     setCurrentWeek((prevWeek) => Math.max(1, prevWeek - 1));
-    navigate('/exam');
+    navigate('/1/problem');
   };
 
   const handleNextWeekClick = () => {
     setCurrentWeek((prevWeek) => prevWeek + 1);
-    navigate('/exam');
+    navigate('/1/problem');
+  };
+
+  useEffect(() => {
+    const savedTags = localStorage.getItem('algorithmTags');
+    if (savedTags) {
+      setAlgorithmTags(JSON.parse(savedTags));
+    }
+  }, []);
+
+  const handleDeleteTag = (index) => {
+    setAlgorithmTags((prevTags) => {
+      const newTags = [...prevTags];
+      newTags.splice(index, 1);
+      localStorage.setItem('algorithmTags', JSON.stringify(newTags));
+      return newTags;
+    });
+  };
+
+  const handleAddAlgorithm = () => {
+    setAddingTag(true);
+  };
+
+  const handleNewTagChange = (e) => {
+    setNewTag(e.target.value);
+  };
+
+  const handleNewTagKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      if (newTag.trim() !== '') {
+        setAlgorithmTags((prevTags) => [...prevTags, newTag]);
+        localStorage.setItem(
+          'algorithmTags',
+          JSON.stringify([...algorithmTags, newTag])
+        );
+      }
+      setAddingTag(false);
+      setNewTag('');
+    }
   };
 
   const { startDate, endDate } = getWeekDates(currentWeek);
@@ -54,10 +95,28 @@ const Weekend = () => {
       <AlgorithmBox>
         <AlgorithmTitle>사용 알고리즘</AlgorithmTitle>
         <AlgorithmTags>
-          <AlgorithmTag>미정</AlgorithmTag>
-          <AlgorithmAdd>
-            <AiOutlinePlus />
-          </AlgorithmAdd>
+          {algorithmTags.map((tag, index) => (
+            <AlgorithmTag key={index}>
+              {tag}
+              <DeleteButton onClick={() => handleDeleteTag(index)}>
+                <AiOutlineClose />
+              </DeleteButton>
+            </AlgorithmTag>
+          ))}
+          {addingTag ? (
+            <AlgorithmTag>
+              <AlgorithmInput
+                type="text"
+                value={newTag}
+                onChange={handleNewTagChange}
+                onKeyPress={handleNewTagKeyPress}
+              />
+            </AlgorithmTag>
+          ) : (
+            <AlgorithmAdd onClick={handleAddAlgorithm}>
+              <AiOutlinePlus />
+            </AlgorithmAdd>
+          )}
         </AlgorithmTags>
       </AlgorithmBox>
     </>
@@ -84,6 +143,7 @@ const WeekendBarButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 const WeekendDate = styled.div`
@@ -127,7 +187,7 @@ const AlgorithmTitle = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
 `;
 
 const AlgorithmTag = styled.span`
@@ -142,12 +202,55 @@ const AlgorithmTag = styled.span`
   line-height: normal;
   border-radius: 5px;
   background: #e8f0fe;
-  width: 46px;
+  // width: 46px;
   padding: 2px;
   flex-shrink: 0;
+  position: relative;
+  margin-right: 4px;
+
+  &:hover {
+    background: #d4e3fc;
+  }
 `;
 
-const ReactIcon = styled.span``;
+const AlgorithmInput = styled.input`
+  width: 100%;
+  height: 22px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  background: #e8f0fe;
+  border-radius: 5px;
+  padding: 2px;
+`;
+const DeleteButton = styled.button`
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #f05454;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: none; /* Hide the delete button by default */
+
+  ${AlgorithmTag}:hover & {
+    display: flex; /* Show the delete button on hover */
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+const ReactIcon = styled.span`
+  color: #676769;
+  margin: 0 5px;
+`;
 
 const AlgorithmTags = styled.div`
   display: flex;
